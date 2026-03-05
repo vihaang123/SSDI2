@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Two Sample T-Test Calculator</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f5f7fa;
+text-align:center;
+}
+
+.container{
+width:500px;
+margin:auto;
+background:white;
+padding:30px;
+margin-top:60px;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+input,select{
+width:90%;
+padding:10px;
+margin:10px 0;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+button{
+padding:12px 20px;
+background:#007BFF;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+.result{
+margin-top:20px;
+background:#eef3ff;
+padding:15px;
+border-radius:8px;
+}
+
+.error{
+color:red;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📊 Two Sample T-Test Calculator</h2>
+
+<form method="POST">
+
+<input name="sample1" placeholder="Sample 1: 10,12,14,15,18" required>
+
+<input name="sample2" placeholder="Sample 2: 8,9,11,13,10" required>
+
+<select name="alternative">
+
+<option value="two">Two-Sided Test</option>
+<option value="left">Left-Tailed Test</option>
+<option value="right">Right-Tailed Test</option>
+
+</select>
+
+<br>
+
+<button type="submit">Run Test</button>
+
+</form>
+
+{% if result %}
+
+<div class="result">
+
+{% if result.error %}
+
+<p class="error">{{ result.error }}</p>
+
+{% else %}
+
+<p><b>Sample 1 Mean:</b> {{ result.mean1 }}</p>
+<p><b>Sample 2 Mean:</b> {{ result.mean2 }}</p>
+<p><b>T Statistic:</b> {{ result.t }}</p>
+<p><b>Degrees of Freedom:</b> {{ result.df }}</p>
+<p><b>P Value:</b> {{ result.p }}</p>
+
+<h3>{{ result.decision }}</h3>
+
+{% endif %}
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
